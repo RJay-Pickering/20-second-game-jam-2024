@@ -1,0 +1,1 @@
+Need to add music for the game over screen based on if they win or not, sound effects, make the story and controls menu have audio too, make portraits for the characters, and make sure to test the code.

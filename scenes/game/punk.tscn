@@ -1,0 +1,149 @@
+[gd_scene load_steps=22 format=3 uid="uid://c4n6qb5lh3qef"]
+
+[ext_resource type="Texture2D" uid="uid://c1vt6r72yag7u" path="res://assets/Characters/punk/idle.png" id="1_7qy8u"]
+[ext_resource type="Script" path="res://scripts/game/punk.gd" id="1_jfpce"]
+[ext_resource type="Texture2D" uid="uid://btreoy6iew82b" path="res://assets/Characters/punk/hurt.png" id="2_xs5mc"]
+[ext_resource type="Texture2D" uid="uid://dxdt46w3qbkmb" path="res://assets/Characters/punk/punch.png" id="3_fvpda"]
+[ext_resource type="Texture2D" uid="uid://chfdkem8wlsgl" path="res://assets/Characters/punk/walk.png" id="4_0wu10"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8k7q"]
+atlas = ExtResource("1_7qy8u")
+region = Rect2(0, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7yf4"]
+atlas = ExtResource("1_7qy8u")
+region = Rect2(96, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdm1y"]
+atlas = ExtResource("1_7qy8u")
+region = Rect2(192, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2h3u"]
+atlas = ExtResource("1_7qy8u")
+region = Rect2(288, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj4sa"]
+atlas = ExtResource("2_xs5mc")
+region = Rect2(0, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyeau"]
+atlas = ExtResource("2_xs5mc")
+region = Rect2(96, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbqkk"]
+atlas = ExtResource("3_fvpda")
+region = Rect2(0, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar6ho"]
+atlas = ExtResource("3_fvpda")
+region = Rect2(96, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2slbq"]
+atlas = ExtResource("3_fvpda")
+region = Rect2(192, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f78mp"]
+atlas = ExtResource("4_0wu10")
+region = Rect2(0, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw15d"]
+atlas = ExtResource("4_0wu10")
+region = Rect2(96, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xliaf"]
+atlas = ExtResource("4_0wu10")
+region = Rect2(192, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d42xg"]
+atlas = ExtResource("4_0wu10")
+region = Rect2(288, 0, 96, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25qkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8k7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7yf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdm1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2h3u")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj4sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyeau")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbqkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar6ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2slbq")
+}],
+"loop": false,
+"name": &"punch",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f78mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw15d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xliaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d42xg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gk7wr"]
+size = Vector2(20, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sq6xu"]
+size = Vector2(13, 43)
+
+[node name="Punk" type="CharacterBody2D"]
+script = ExtResource("1_jfpce")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0.5)
+sprite_frames = SubResource("SpriteFrames_25qkt")
+animation = &"hurt"
+autoplay = "Idle"
+frame = 1
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 32)
+shape = SubResource("RectangleShape2D_gk7wr")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1.5, 10.5)
+shape = SubResource("RectangleShape2D_sq6xu")
+debug_color = Color(0.797092, 0.21408, 0.891753, 0.42)

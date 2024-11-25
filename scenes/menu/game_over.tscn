@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3vvjko2h2byy"]
+[gd_scene load_steps=6 format=3 uid="uid://d3vvjko2h2byy"]
 
 [ext_resource type="Script" path="res://scripts/menu/end_game.gd" id="1_o6jum"]
+[ext_resource type="AudioStream" uid="uid://i3a8w4tueafm" path="res://Audio/music/AnotherLegend-win.wav" id="2_cpd8k"]
+[ext_resource type="AudioStream" uid="uid://nexf6n8ru5ag" path="res://Audio/music/Misgivings-GameOver.wav" id="3_ka1vu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vadpd"]
-font_size = 50
+font_size = 75
 font_color = Color(1, 0.458824, 0.109804, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xkb1r"]
-font_size = 15
+font_size = 30
 font_color = Color(0.934875, 0.518437, 0, 1)
 
 [node name="GameOver" type="CanvasLayer"]
@@ -52,15 +54,24 @@ theme_override_constants/separation = 25
 
 [node name="retry" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Retry"
 
 [node name="main_menu" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 
 [node name="quit" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Quit"
+
+[node name="Win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_cpd8k")
+
+[node name="Lose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ka1vu")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]

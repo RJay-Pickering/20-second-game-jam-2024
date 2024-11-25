@@ -1,19 +1,24 @@
-[gd_scene load_steps=26 format=3 uid="uid://dkb0g18t7po6s"]
+[gd_scene load_steps=43 format=3 uid="uid://dkb0g18t7po6s"]
 
 [ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1_lc5lr"]
 [ext_resource type="Texture2D" uid="uid://bxms0i0e86hq2" path="res://assets/Characters/player/player-CrouchSwordSlash.png" id="2_o2qxq"]
+[ext_resource type="Texture2D" uid="uid://co6ir6fms4nm5" path="res://assets/Characters/player/player-Idle.png" id="3_6grug"]
 [ext_resource type="Texture2D" uid="uid://dxdt46w3qbkmb" path="res://assets/Characters/punk/punch.png" id="3_oxg5q"]
 [ext_resource type="Texture2D" uid="uid://ctgewj8h22543" path="res://assets/Characters/ogre/ogre-attack.png" id="4_kcpuf"]
 [ext_resource type="AudioStream" uid="uid://bper14y63c65r" path="res://Audio/music/ATaleForTheJourney-MainMenu.wav" id="5_hg4iy"]
+[ext_resource type="Texture2D" uid="uid://c1vt6r72yag7u" path="res://assets/Characters/punk/idle.png" id="5_p74rn"]
+[ext_resource type="PackedScene" uid="uid://dy5tcbxltj3nt" path="res://scenes/menu/controls.tscn" id="6_0k8kd"]
+[ext_resource type="PackedScene" uid="uid://bc2yyhn6s7xkj" path="res://scenes/menu/short_story.tscn" id="7_te1rx"]
+[ext_resource type="Texture2D" uid="uid://b75ggdipkh83w" path="res://assets/Characters/ogre/ogre-idle.png" id="7_vqhmf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gocdv"]
-font_size = 50
+font_size = 75
 
 [sub_resource type="LabelSettings" id="LabelSettings_xebc7"]
-font_size = 15
+font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_0s05n"]
-font_size = 25
+font_size = 45
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_je6hc"]
@@ -30,6 +35,22 @@ region = Rect2(256, 0, 128, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bqk0"]
 atlas = ExtResource("2_o2qxq")
+region = Rect2(384, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v287"]
+atlas = ExtResource("3_6grug")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmr1r"]
+atlas = ExtResource("3_6grug")
+region = Rect2(128, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2naob"]
+atlas = ExtResource("3_6grug")
+region = Rect2(256, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14ng2"]
+atlas = ExtResource("3_6grug")
 region = Rect2(384, 0, 128, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xn0tj"]
@@ -50,6 +71,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v287")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmr1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2naob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14ng2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14dx6"]
@@ -63,6 +101,22 @@ region = Rect2(96, 0, 96, 63)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lj84q"]
 atlas = ExtResource("3_oxg5q")
 region = Rect2(192, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01clp"]
+atlas = ExtResource("5_p74rn")
+region = Rect2(0, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f52w1"]
+atlas = ExtResource("5_p74rn")
+region = Rect2(96, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arjuh"]
+atlas = ExtResource("5_p74rn")
+region = Rect2(192, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfetf"]
+atlas = ExtResource("5_p74rn")
+region = Rect2(288, 0, 96, 63)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_miajt"]
 animations = [{
@@ -78,6 +132,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01clp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f52w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arjuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfetf")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -109,6 +180,22 @@ region = Rect2(720, 0, 144, 80)
 atlas = ExtResource("4_kcpuf")
 region = Rect2(864, 0, 144, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmima"]
+atlas = ExtResource("7_vqhmf")
+region = Rect2(0, 0, 144, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a7t7"]
+atlas = ExtResource("7_vqhmf")
+region = Rect2(144, 0, 144, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14fa1"]
+atlas = ExtResource("7_vqhmf")
+region = Rect2(288, 0, 144, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5p6e"]
+atlas = ExtResource("7_vqhmf")
+region = Rect2(432, 0, 144, 80)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7452b"]
 animations = [{
 "frames": [{
@@ -136,6 +223,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmima")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a7t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14fa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5p6e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
 [node name="MainMenu" type="CanvasLayer"]
@@ -146,58 +250,63 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 0.588235)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="menu" type="Node2D" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="menu"]
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="menu/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="menu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="menu/CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = -5
 
-[node name="title" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="title" type="Label" parent="menu/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "20 SECOND
 FIGHT"
 label_settings = SubResource("LabelSettings_gocdv")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="menu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="start" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="start" type="Button" parent="menu/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Start"
 
-[node name="controls" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="controls" type="Button" parent="menu/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Controls"
 
-[node name="quit" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="quit" type="Button" parent="menu/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
-[node name="credit" type="Label" parent="."]
-offset_left = 1075.0
+[node name="credit" type="Label" parent="menu"]
+offset_left = 1040.0
 offset_top = 607.0
-offset_right = 1259.0
+offset_right = 1265.0
 offset_bottom = 704.0
 text = "Music: Sara Garrard
 Art: Ansimuz (itch.io)
-SFX: Helton Yan (itch.io)
-Developer: RJay Pickering"
+Developer: RJay Pickering
+SFX: danielsoundsgood (itch.io)"
 label_settings = SubResource("LabelSettings_xebc7")
 horizontal_alignment = 1
 
-[node name="demo" type="Label" parent="."]
+[node name="demo" type="Label" parent="menu"]
 offset_left = 1192.0
 offset_top = 11.0
 offset_right = 1267.0
@@ -206,7 +315,7 @@ text = "DEMO"
 label_settings = SubResource("LabelSettings_0s05n")
 horizontal_alignment = 1
 
-[node name="notes" type="Label" parent="."]
+[node name="notes" type="Label" parent="menu"]
 offset_left = 18.0
 offset_top = 603.0
 offset_right = 202.0
@@ -216,32 +325,41 @@ label_settings = SubResource("LabelSettings_xebc7")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="player" type="AnimatedSprite2D" parent="."]
-position = Vector2(576, 371)
+[node name="player" type="AnimatedSprite2D" parent="menu"]
+position = Vector2(595, 365)
 sprite_frames = SubResource("SpriteFrames_xn0tj")
-frame_progress = 0.153161
+autoplay = "idle"
+frame_progress = 0.75542
 
-[node name="enemy1" type="AnimatedSprite2D" parent="."]
-position = Vector2(707, 464)
+[node name="enemy1" type="AnimatedSprite2D" parent="menu"]
+position = Vector2(700, 450)
 sprite_frames = SubResource("SpriteFrames_miajt")
-frame_progress = 0.26363
+autoplay = "idle"
+frame_progress = 0.759345
 
-[node name="enemy2" type="AnimatedSprite2D" parent="."]
-position = Vector2(565, 481)
+[node name="enemy2" type="AnimatedSprite2D" parent="menu"]
+position = Vector2(570, 475)
 sprite_frames = SubResource("SpriteFrames_7452b")
-frame_progress = 0.166603
+autoplay = "idle"
+frame_progress = 0.269834
 flip_h = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="menu"]
 stream = ExtResource("5_hg4iy")
 autoplay = true
 
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_entered"]
-[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_exited"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/VBoxContainer/controls" to="." method="_on_controls_mouse_entered"]
-[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/VBoxContainer/controls" to="." method="_on_controls_mouse_exited"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/controls" to="." method="_on_controls_pressed"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_entered"]
-[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_exited"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[node name="controls" parent="." instance=ExtResource("6_0k8kd")]
+visible = false
+
+[node name="ShortStory" parent="." instance=ExtResource("7_te1rx")]
+visible = false
+
+[connection signal="mouse_entered" from="menu/CenterContainer/VBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_entered"]
+[connection signal="mouse_exited" from="menu/CenterContainer/VBoxContainer/VBoxContainer/start" to="." method="_on_start_mouse_exited"]
+[connection signal="pressed" from="menu/CenterContainer/VBoxContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="menu/CenterContainer/VBoxContainer/VBoxContainer/controls" to="." method="_on_controls_mouse_entered"]
+[connection signal="mouse_exited" from="menu/CenterContainer/VBoxContainer/VBoxContainer/controls" to="." method="_on_controls_mouse_exited"]
+[connection signal="pressed" from="menu/CenterContainer/VBoxContainer/VBoxContainer/controls" to="." method="_on_controls_pressed"]
+[connection signal="mouse_entered" from="menu/CenterContainer/VBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="menu/CenterContainer/VBoxContainer/VBoxContainer/quit" to="." method="_on_quit_mouse_exited"]
+[connection signal="pressed" from="menu/CenterContainer/VBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

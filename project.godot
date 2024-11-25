@@ -26,8 +26,13 @@ Global="*res://scripts/game/global.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
+
+[gui]
+
+theme/custom_font="res://fonts/dysin4mation.ttf"
 
 [input]
 

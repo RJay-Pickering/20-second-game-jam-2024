@@ -2,7 +2,8 @@ extends CanvasLayer
 
 
 func _on_return_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+	$"../menu".visible = true
+	$"../controls".visible = false
 
 
 func _on_return_mouse_entered() -> void:
@@ -10,4 +11,4 @@ func _on_return_mouse_entered() -> void:
 
 
 func _on_return_mouse_exited() -> void:
-	$CenterContainer/enemy.stop()
+	$CenterContainer/enemy.play("idle")

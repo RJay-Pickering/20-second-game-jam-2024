@@ -1,10 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy5tcbxltj3nt"]
+[gd_scene load_steps=22 format=3 uid="uid://dy5tcbxltj3nt"]
 
 [ext_resource type="Script" path="res://scripts/menu/controls.gd" id="1_hem21"]
 [ext_resource type="Texture2D" uid="uid://cse26esoodcel" path="res://assets/Characters/ninja/attack.png" id="2_b1r3k"]
+[ext_resource type="Texture2D" uid="uid://chcbyakx6rapj" path="res://assets/Characters/ninja/idle.png" id="3_4xp6y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fillv"]
-font_size = 50
+font_size = 75
+
+[sub_resource type="LabelSettings" id="LabelSettings_65xh2"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_68fvp"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftrdr"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_fxd3x"]
+font_size = 20
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_086yo"]
 atlas = ExtResource("2_b1r3k")
@@ -38,6 +51,22 @@ region = Rect2(768, 0, 128, 96)
 atlas = ExtResource("2_b1r3k")
 region = Rect2(896, 0, 128, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vbc2"]
+atlas = ExtResource("3_4xp6y")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irqey"]
+atlas = ExtResource("3_4xp6y")
+region = Rect2(128, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn4yt"]
+atlas = ExtResource("3_4xp6y")
+region = Rect2(256, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymqs0"]
+atlas = ExtResource("3_4xp6y")
+region = Rect2(384, 0, 128, 96)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ntf6c"]
 animations = [{
 "frames": [{
@@ -68,6 +97,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vbc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irqey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn4yt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymqs0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
 [node name="controls" type="CanvasLayer"]
@@ -111,6 +157,7 @@ Arrow Keys or WASD
 
 Jump: 
 Spacebar"
+label_settings = SubResource("LabelSettings_65xh2")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer"]
@@ -121,28 +168,34 @@ theme_override_constants/separation = 30
 layout_mode = 2
 text = "Attack:
 Q or Enter"
+label_settings = SubResource("LabelSettings_68fvp")
 horizontal_alignment = 1
 
 [node name="uppercut" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Uppercut:
 Attack and Up Arrow Key or W"
+label_settings = SubResource("LabelSettings_ftrdr")
 horizontal_alignment = 1
 
 [node name="smack" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Smack:
 Attack and Down Arrow Key or S"
+label_settings = SubResource("LabelSettings_fxd3x")
 horizontal_alignment = 1
 
 [node name="return" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Main Menu"
 
 [node name="enemy" type="AnimatedSprite2D" parent="CenterContainer"]
-position = Vector2(731, 502)
+position = Vector2(688, 476)
 sprite_frames = SubResource("SpriteFrames_ntf6c")
-frame_progress = 0.297267
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.23518
 flip_h = true
 
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/VBoxContainer/return" to="." method="_on_return_mouse_entered"]

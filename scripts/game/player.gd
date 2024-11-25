@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			if not is_jump_attacking and not damaged:
+				$jump.play()
 				sprite.play("jump")
 			is_jumping = true
 			velocity.y = JUMP_VELOCITY
@@ -89,15 +90,17 @@ func direction_helper(direction):
 func attack_helper(delta):
 	if can_attack and not damaged:
 		if Input.is_action_pressed("attack") and Input.is_action_pressed("down") and is_on_floor():
-			sprite.play("attack-low")
+			$miss.play()
+			sprite.play("attack-slash")
 			is_stand_attacking = true
-			down_strike_collision.disabled = false
+			sword_strike_collision.disabled = false
 			can_attack = false
 			await get_tree().create_timer(0.5).timeout
 			is_stand_attacking = false
-			down_strike_collision.disabled = true
+			sword_strike_collision.disabled = true
 		
 		elif Input.is_action_pressed("attack") and Input.is_action_pressed("up") and is_on_floor():
+			$miss.play()
 			sprite.play("attack-high")
 			is_stand_attacking = true
 			up_strike_collision.disabled = false
@@ -107,15 +110,17 @@ func attack_helper(delta):
 			up_strike_collision.disabled = true
 		
 		elif Input.is_action_pressed("attack") and is_on_floor():
-			sprite.play("attack-slash")
+			$miss.play()
+			sprite.play("attack-low")
 			is_stand_attacking = true
-			sword_strike_collision.disabled = false
+			down_strike_collision.disabled = false
 			can_attack = false
 			await get_tree().create_timer(0.5).timeout
 			is_stand_attacking = false
-			sword_strike_collision.disabled = true
+			down_strike_collision.disabled = true
 		
 		if Input.is_action_pressed("attack") and not is_on_floor():
+			$miss.play()
 			sprite.play("attack-jump")
 			is_jump_attacking = true
 			sword_strike_collision.disabled = false
@@ -146,16 +151,22 @@ func die():
 func _on_up_strike_area_entered(area: Area2D) -> void:
 	if area.name == "HurtBox":
 		var enemy: CharacterBody2D = area.get_parent()
-		enemy.take_damage(15)
+		$hit.play()
+		enemy.take_damage(10)
+		up_strike_collision.disabled = true
 
 
 func _on_down_strike_area_entered(area: Area2D) -> void:
 	if area.name == "HurtBox":
 		var enemy: CharacterBody2D = area.get_parent()
-		enemy.take_damage(10)
+		$hit.play()
+		enemy.take_damage(5)
+		down_strike_collision.disabled = true
 
 
 func _on_sword_strike_area_entered(area: Area2D) -> void:
 	if area.name == "HurtBox":
 		var enemy: CharacterBody2D = area.get_parent()
-		enemy.take_damage(5)
+		$blade.play()
+		enemy.take_damage(15)
+		sword_strike_collision.disabled = true

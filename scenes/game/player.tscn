@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dvg3a0coo1fpf"]
+[gd_scene load_steps=60 format=3 uid="uid://dvg3a0coo1fpf"]
 
 [ext_resource type="Script" path="res://scripts/game/player.gd" id="1_gq48h"]
 [ext_resource type="Texture2D" uid="uid://co6ir6fms4nm5" path="res://assets/Characters/player/player-Idle.png" id="1_ln5uv"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dg5l4neuk2vac" path="res://assets/Characters/player/player-Hurt.png" id="6_fqkl1"]
 [ext_resource type="Texture2D" uid="uid://dw1y0vh84jxvm" path="res://assets/Characters/player/player-Jump.png" id="7_3ov8q"]
 [ext_resource type="Texture2D" uid="uid://b10snybblnhbx" path="res://assets/Characters/player/player-Run.png" id="8_2r5wd"]
+[ext_resource type="AudioStream" uid="uid://dmhl73w8qayrs" path="res://Audio/sfx/jump.wav" id="10_74wtw"]
+[ext_resource type="AudioStream" uid="uid://bn6pq6wwurpeu" path="res://Audio/sfx/player_hit.wav" id="11_l8n04"]
+[ext_resource type="AudioStream" uid="uid://dsrqr5lbjcs5p" path="res://Audio/sfx/player_miss.wav" id="12_bdus5"]
+[ext_resource type="AudioStream" uid="uid://b3en1i2e6wc3q" path="res://Audio/sfx/blade_hit.wav" id="13_tc8c2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqsp4"]
 atlas = ExtResource("1_ln5uv")
@@ -387,6 +391,18 @@ debug_color = Color(0.729412, 0.396078, 0, 0.419608)
 position = Vector2(29.25, 27)
 shape = SubResource("RectangleShape2D_77mng")
 debug_color = Color(0.76108, 0.182243, 0.996407, 0.42)
+
+[node name="jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_74wtw")
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_l8n04")
+
+[node name="miss" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_bdus5")
+
+[node name="blade" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_tc8c2")
 
 [connection signal="area_entered" from="up_strike" to="." method="_on_up_strike_area_entered"]
 [connection signal="area_entered" from="down_strike" to="." method="_on_down_strike_area_entered"]

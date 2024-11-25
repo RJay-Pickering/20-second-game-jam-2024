@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 			sprite.flip_h = true
 		
 		if damaged:
-			var knockback = position.direction_to(target.position) * -500
+			var knockback = position.direction_to(target.position) * -400
 			velocity.x = knockback.x
 			move_and_collide(velocity * delta)
 			await get_tree().create_timer(0.5).timeout
@@ -55,10 +55,13 @@ func attack() -> void:
 	$AnimatedSprite2D.play("punch")
 	await get_tree().create_timer(0.5).timeout
 	if position.distance_to(target.position) < attack_range:
+		$hit.play()
 		Global.pause_attack = true
 		target.take_damage(attack_damage)
 		await get_tree().create_timer(0.5).timeout
 		Global.pause_attack = false
+	else:
+		$miss.play()
 	if target.health > 0:
 		await get_tree().create_timer(0.5).timeout
 		can_attack = true

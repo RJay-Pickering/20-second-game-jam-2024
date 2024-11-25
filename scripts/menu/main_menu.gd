@@ -2,11 +2,14 @@ extends CanvasLayer
 
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu/short_story.tscn")
+	#get_tree().change_scene_to_file("res://scenes/menu/short_story.tscn")
+	$menu.visible = false
+	$ShortStory.visible = true
 
 
 func _on_controls_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu/controls.tscn")
+	$menu.visible = false
+	$controls.visible = true
 
 
 func _on_quit_pressed() -> void:
@@ -14,24 +17,24 @@ func _on_quit_pressed() -> void:
 
 
 func _on_start_mouse_entered() -> void:
-	$player.play("default")
+	$menu/player.play("default")
 
 
 func _on_start_mouse_exited() -> void:
-	$player.stop()
+	$menu/player.play("idle")
 
 
 func _on_controls_mouse_entered() -> void:
-	$enemy1.play("default")
+	$menu/enemy1.play("default")
 
 
 func _on_controls_mouse_exited() -> void:
-	$enemy1.stop()
+	$menu/enemy1.play("idle")
 
 
 func _on_quit_mouse_entered() -> void:
-	$enemy2.play("default")
+	$menu/enemy2.play("default")
 
 
 func _on_quit_mouse_exited() -> void:
-	$enemy2.stop()
+	$menu/enemy2.play("idle")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cvplx2rdovuwf"]
+[gd_scene load_steps=23 format=4 uid="uid://cvplx2rdovuwf"]
 
 [ext_resource type="Texture2D" uid="uid://c5piw3d0yalml" path="res://assets/background/tiles.png" id="3_23utu"]
 [ext_resource type="PackedScene" uid="uid://dvg3a0coo1fpf" path="res://scenes/game/player.tscn" id="3_gr1hl"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://c4n6qb5lh3qef" path="res://scenes/game/punk.tscn" id="4_m3qoh"]
 [ext_resource type="Texture2D" uid="uid://b0umm6a01whx5" path="res://assets/background/Preview.png" id="4_y4p1f"]
 [ext_resource type="Script" path="res://scripts/game/countdown_timer.gd" id="5_bkhme"]
+[ext_resource type="Texture2D" uid="uid://fhiswqk26xhc" path="res://assets/HUD/player-Idle.png" id="6_aweqk"]
 [ext_resource type="Texture2D" uid="uid://buo44phq0tt0q" path="res://assets/background/fog.png" id="7_bhtf0"]
 [ext_resource type="AudioStream" uid="uid://cu552xa2qs2lk" path="res://Audio/music/Combat.wav" id="8_2fs35"]
+[ext_resource type="Texture2D" uid="uid://c1382nxt44euo" path="res://assets/HUD/idle.png" id="8_2gj3t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfr6m"]
 texture = ExtResource("3_23utu")
@@ -87,6 +89,9 @@ size = Vector2(20, 325.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awvta"]
 size = Vector2(616, 86)
 
+[sub_resource type="LabelSettings" id="LabelSettings_otxf5"]
+font_size = 30
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3vfe"]
 bg_color = Color(0.270588, 0, 0, 1)
 border_width_left = 1
@@ -111,6 +116,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="LabelSettings" id="LabelSettings_54np3"]
+font_size = 30
+
 [sub_resource type="SphereMesh" id="SphereMesh_flvkh"]
 
 [sub_resource type="Gradient" id="Gradient_rve7m"]
@@ -121,7 +129,7 @@ colors = PackedColorArray(0.490196, 0, 0.215686, 1, 0.490839, 0, 0.215962, 1)
 gradient = SubResource("Gradient_rve7m")
 
 [sub_resource type="LabelSettings" id="LabelSettings_8e4xg"]
-font_size = 20
+font_size = 30
 
 [node name="Arena" type="Node2D"]
 
@@ -194,6 +202,7 @@ offset_top = 33.0
 offset_right = 160.0
 offset_bottom = 56.0
 text = "David"
+label_settings = SubResource("LabelSettings_otxf5")
 
 [node name="player_health" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 110.0
@@ -204,6 +213,11 @@ theme_override_styles/background = SubResource("StyleBoxFlat_q3vfe")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wfd2k")
 value = 100.0
 show_percentage = false
+
+[node name="player photo" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(69, 112)
+scale = Vector2(3, 3)
+texture = ExtResource("6_aweqk")
 
 [node name="player" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(64, 63)
@@ -216,6 +230,7 @@ offset_top = 32.0
 offset_right = 1161.0
 offset_bottom = 55.0
 text = "Enemy"
+label_settings = SubResource("LabelSettings_54np3")
 horizontal_alignment = 2
 
 [node name="enemy_health" type="ProgressBar" parent="CanvasLayer"]
@@ -229,6 +244,11 @@ value = 100.0
 fill_mode = 1
 show_percentage = false
 
+[node name="Idle" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1230, 78)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_2gj3t")
+
 [node name="enemy" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(1213, 63)
 scale = Vector2(2, 2)
@@ -241,10 +261,10 @@ mesh = SubResource("SphereMesh_flvkh")
 texture = SubResource("GradientTexture1D_6qky4")
 
 [node name="counter" type="Label" parent="CanvasLayer"]
-offset_left = 613.0
-offset_top = 49.0
-offset_right = 663.0
-offset_bottom = 99.0
+offset_left = 614.0
+offset_top = 46.0
+offset_right = 664.0
+offset_bottom = 96.0
 text = "20"
 label_settings = SubResource("LabelSettings_8e4xg")
 horizontal_alignment = 1

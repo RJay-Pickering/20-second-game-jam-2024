@@ -270,8 +270,8 @@ theme_override_constants/separation = -5
 
 [node name="title" type="Label" parent="menu/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "20 SECOND
-FIGHT"
+text = "The swordsman
+conquest"
 label_settings = SubResource("LabelSettings_gocdv")
 horizontal_alignment = 1
 

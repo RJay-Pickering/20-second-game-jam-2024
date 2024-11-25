@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var down_strike_collision = $down_strike/CollisionShape2D
 @onready var sword_strike_collision = $sword_strike/CollisionShape2D
 var damaged = false
-var can_attack = true
+var can_attack
 
 var health = 10
 var is_jumping = false
@@ -21,6 +21,7 @@ var is_jump_attacking = false
 
 
 func _ready() -> void:
+	can_attack = true
 	up_strike_collision.disabled = true
 	down_strike_collision.disabled = true
 	sword_strike_collision.disabled = true
@@ -89,43 +90,47 @@ func direction_helper(direction):
 
 func attack_helper(delta):
 	if can_attack and not damaged:
-		if Input.is_action_pressed("attack") and Input.is_action_pressed("down") and is_on_floor():
+		if Input.is_action_just_pressed("attack") and Input.is_action_pressed("down") and is_on_floor():
+			can_attack = false
 			$miss.play()
 			sprite.play("attack-slash")
 			is_stand_attacking = true
+			await get_tree().create_timer(0.1).timeout
 			sword_strike_collision.disabled = false
-			can_attack = false
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.3).timeout
 			is_stand_attacking = false
 			sword_strike_collision.disabled = true
 		
-		elif Input.is_action_pressed("attack") and Input.is_action_pressed("up") and is_on_floor():
+		elif Input.is_action_just_pressed("attack") and Input.is_action_pressed("up") and is_on_floor():
+			can_attack = false
 			$miss.play()
 			sprite.play("attack-high")
 			is_stand_attacking = true
+			await get_tree().create_timer(0.1).timeout
 			up_strike_collision.disabled = false
-			can_attack = false
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.3).timeout
 			is_stand_attacking = false
 			up_strike_collision.disabled = true
 		
-		elif Input.is_action_pressed("attack") and is_on_floor():
+		elif Input.is_action_just_pressed("attack") and is_on_floor():
+			can_attack = false
 			$miss.play()
 			sprite.play("attack-low")
 			is_stand_attacking = true
+			await get_tree().create_timer(0.1).timeout
 			down_strike_collision.disabled = false
-			can_attack = false
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.3).timeout
 			is_stand_attacking = false
 			down_strike_collision.disabled = true
 		
-		if Input.is_action_pressed("attack") and not is_on_floor():
+		if Input.is_action_just_pressed("attack") and not is_on_floor():
+			can_attack = false
 			$miss.play()
 			sprite.play("attack-jump")
 			is_jump_attacking = true
+			await get_tree().create_timer(0.1).timeout
 			sword_strike_collision.disabled = false
-			can_attack = false
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.3).timeout
 			is_jump_attacking = false
 			sword_strike_collision.disabled = true
 	else:
@@ -150,23 +155,23 @@ func die():
 
 func _on_up_strike_area_entered(area: Area2D) -> void:
 	if area.name == "HurtBox":
+		up_strike_collision.disabled = true
 		var enemy: CharacterBody2D = area.get_parent()
 		$hit.play()
-		enemy.take_damage(10)
-		up_strike_collision.disabled = true
+		enemy.take_damage(8)
 
 
 func _on_down_strike_area_entered(area: Area2D) -> void:
 	if area.name == "HurtBox":
+		down_strike_collision.disabled = true
 		var enemy: CharacterBody2D = area.get_parent()
 		$hit.play()
 		enemy.take_damage(5)
-		down_strike_collision.disabled = true
 
 
 func _on_sword_strike_area_entered(area: Area2D) -> void:
 	if area.name == "HurtBox":
+		sword_strike_collision.disabled = true
 		var enemy: CharacterBody2D = area.get_parent()
 		$blade.play()
-		enemy.take_damage(15)
-		sword_strike_collision.disabled = true
+		enemy.take_damage(10)

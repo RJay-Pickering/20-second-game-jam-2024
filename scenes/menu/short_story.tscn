@@ -30,7 +30,7 @@ offset_left = 325.0
 offset_top = 291.0
 offset_right = 976.0
 offset_bottom = 478.0
-text = "There was once an proud swordsman named David and he was in need of some coin. Suddenly, he noticed a waiver promoting a competion. It was an \"anything goes\" kind of competiton where people can use any tactics they would like to use to win. The reward was stated to be \"As much gold as you can take!\" David rushed to the meet area to win the award with his pockets empty. 
+text = "​There was once a proud swordsman named David, and he was in need of some coin. Suddenly, he noticed a waiver promoting a competition​. It was an \"anything goes\" kind of competition where people can use any tactics they would like to use to win. The reward was stated to be \"As much gold as you can take!\" David rushed to the meet area to win the award with his pockets empty. 
 
 You have 20 seconds to fight. If time runs out or you get knocked out, you lose. Knocking out the other player is the only way to win. If you stand still, the \"poison\" in the air will begin to eat away at your health so be careful. Lastly, remember that you have different attacks that do different damage, and also that this is a demo... so please give feedback if you are able, to help me advance my skills in game development. Thank you so much for at least giving this game a chance. - Developer"
 label_settings = SubResource("LabelSettings_l724m")

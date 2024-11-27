@@ -180,7 +180,7 @@ horizontal_alignment = 1
 
 [node name="smack" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Smack:
+text = "Slice:
 Attack and Down Arrow Key or S"
 label_settings = SubResource("LabelSettings_fxd3x")
 horizontal_alignment = 1
@@ -195,7 +195,7 @@ position = Vector2(688, 476)
 sprite_frames = SubResource("SpriteFrames_ntf6c")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.23518
+frame_progress = 0.0162689
 flip_h = true
 
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/VBoxContainer/return" to="." method="_on_return_mouse_entered"]

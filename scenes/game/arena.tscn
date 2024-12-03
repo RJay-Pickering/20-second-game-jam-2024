@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cvplx2rdovuwf"]
+[gd_scene load_steps=35 format=4 uid="uid://cvplx2rdovuwf"]
 
 [ext_resource type="Script" path="res://scripts/game/arena.gd" id="1_ty2x4"]
 [ext_resource type="Texture2D" uid="uid://c5piw3d0yalml" path="res://assets/background/tiles.png" id="3_23utu"]
@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://scripts/game/countdown_timer.gd" id="5_bkhme"]
 [ext_resource type="Texture2D" uid="uid://fhiswqk26xhc" path="res://assets/HUD/player-Idle.png" id="6_aweqk"]
 [ext_resource type="Texture2D" uid="uid://buo44phq0tt0q" path="res://assets/background/fog.png" id="7_bhtf0"]
-[ext_resource type="AudioStream" uid="uid://cu552xa2qs2lk" path="res://Audio/music/Combat.wav" id="8_2fs35"]
 [ext_resource type="Texture2D" uid="uid://c1382nxt44euo" path="res://assets/HUD/idle.png" id="8_2gj3t"]
+[ext_resource type="AudioStream" uid="uid://dqgsx8wg4knvh" path="res://Audio/music/Combat.mp3" id="11_wkrtx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfr6m"]
 texture = ExtResource("3_23utu")
@@ -184,6 +184,17 @@ gradient = SubResource("Gradient_rve7m")
 [sub_resource type="LabelSettings" id="LabelSettings_8e4xg"]
 font_size = 30
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bx3pf"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.622903, 0.212564, 9.62615e-08, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg2r8"]
+bg_color = Color(1, 0.403922, 0.266667, 1)
+
 [sub_resource type="Animation" id="Animation_dddfs"]
 length = 0.001
 tracks/0/type = "value"
@@ -298,17 +309,17 @@ script = ExtResource("5_bkhme")
 
 [node name="player_name" type="Label" parent="CanvasLayer"]
 offset_left = 115.0
-offset_top = 33.0
+offset_top = 24.0
 offset_right = 160.0
-offset_bottom = 56.0
+offset_bottom = 47.0
 text = "David"
 label_settings = SubResource("LabelSettings_otxf5")
 
 [node name="player_health" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 110.0
-offset_top = 56.0
+offset_top = 47.0
 offset_right = 606.0
-offset_bottom = 93.0
+offset_bottom = 84.0
 theme_override_styles/background = SubResource("StyleBoxFlat_q3vfe")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wfd2k")
 value = 100.0
@@ -326,9 +337,9 @@ texture = ExtResource("4_2tu1u")
 
 [node name="PlayersAttackCooldown" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 110.0
-offset_top = 93.0
+offset_top = 84.0
 offset_right = 315.0
-offset_bottom = 109.0
+offset_bottom = 100.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ps6i5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3kqaw")
 value = 100.0
@@ -336,18 +347,18 @@ show_percentage = false
 
 [node name="enemy_name" type="Label" parent="CanvasLayer"]
 offset_left = 985.0
-offset_top = 32.0
+offset_top = 23.0
 offset_right = 1161.0
-offset_bottom = 55.0
+offset_bottom = 46.0
 text = "Jared the Punk"
 label_settings = SubResource("LabelSettings_54np3")
 horizontal_alignment = 2
 
 [node name="enemy_health" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 671.0
-offset_top = 56.0
+offset_top = 47.0
 offset_right = 1167.0
-offset_bottom = 93.0
+offset_bottom = 84.0
 theme_override_styles/background = SubResource("StyleBoxFlat_kykjq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_7bud7")
 value = 100.0
@@ -366,29 +377,63 @@ texture = ExtResource("4_2tu1u")
 
 [node name="EnemyAttackCooldown" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 962.0
-offset_top = 93.0
+offset_top = 84.0
 offset_right = 1167.0
-offset_bottom = 109.0
+offset_bottom = 100.0
 theme_override_styles/background = SubResource("StyleBoxFlat_wq01x")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0jucx")
 value = 100.0
+fill_mode = 1
 show_percentage = false
 
 [node name="Countdown" type="MeshInstance2D" parent="CanvasLayer"]
-position = Vector2(638, 74)
+position = Vector2(638, 65)
 scale = Vector2(50, 50)
 mesh = SubResource("SphereMesh_flvkh")
 texture = SubResource("GradientTexture1D_6qky4")
 
 [node name="counter" type="Label" parent="CanvasLayer"]
 offset_left = 614.0
-offset_top = 46.0
+offset_top = 37.0
 offset_right = 664.0
-offset_bottom = 96.0
+offset_bottom = 87.0
 text = "20"
 label_settings = SubResource("LabelSettings_8e4xg")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="usage1" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 629.0
+offset_top = 94.0
+offset_right = 633.0
+offset_bottom = 98.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bx3pf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eg2r8")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="usage2" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 637.0
+offset_top = 94.0
+offset_right = 641.0
+offset_bottom = 98.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bx3pf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eg2r8")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="usage3" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 646.0
+offset_top = 94.0
+offset_right = 650.0
+offset_bottom = 98.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bx3pf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eg2r8")
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [node name="Poison" type="Sprite2D" parent="."]
 position = Vector2(191, 209)
@@ -401,6 +446,6 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_2fs35")
+stream = ExtResource("11_wkrtx")
 autoplay = true
 bus = &"background"

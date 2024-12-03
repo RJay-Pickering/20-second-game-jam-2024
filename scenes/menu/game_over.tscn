@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3vvjko2h2byy"]
 
 [ext_resource type="Script" path="res://scripts/menu/end_game.gd" id="1_o6jum"]
-[ext_resource type="AudioStream" uid="uid://i3a8w4tueafm" path="res://Audio/music/AnotherLegend-win.wav" id="2_cpd8k"]
-[ext_resource type="AudioStream" uid="uid://nexf6n8ru5ag" path="res://Audio/music/Misgivings-GameOver.wav" id="3_ka1vu"]
+[ext_resource type="AudioStream" uid="uid://pjl6os53himd" path="res://Audio/music/AnotherLegend-win.ogg" id="2_c4etb"]
+[ext_resource type="AudioStream" uid="uid://cljkuafsequif" path="res://Audio/music/Misgivings-GameOver.ogg" id="3_o1j4k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vadpd"]
 font_size = 75
@@ -62,17 +62,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 
-[node name="quit" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Quit"
-
 [node name="Win" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_cpd8k")
+stream = ExtResource("2_c4etb")
 
 [node name="Lose" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ka1vu")
+stream = ExtResource("3_o1j4k")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

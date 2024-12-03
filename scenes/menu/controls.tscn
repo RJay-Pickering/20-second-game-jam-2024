@@ -173,14 +173,14 @@ horizontal_alignment = 1
 
 [node name="uppercut" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Uppercut:
+text = "Uppercut (air attack):
 Attack and Up Arrow Key or W"
 label_settings = SubResource("LabelSettings_ftrdr")
 horizontal_alignment = 1
 
 [node name="smack" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Slice:
+text = "Slice (3 uses only):
 Attack and Down Arrow Key or S"
 label_settings = SubResource("LabelSettings_fxd3x")
 horizontal_alignment = 1

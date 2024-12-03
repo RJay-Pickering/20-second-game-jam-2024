@@ -32,16 +32,16 @@ offset_right = 976.0
 offset_bottom = 478.0
 text = "​There was once a proud swordsman named David, and he was in need of some coin. Suddenly, he noticed a waiver promoting a competition​. It was an \"anything goes\" kind of competition where people can use any tactics they would like to use to win. The reward was stated to be \"As much gold as you can take!\" David rushed to the meet area to win the award with his pockets empty. 
 
-You have 20 seconds to fight. If time runs out or you get knocked out, you lose. Knocking out the other player is the only way to win. If you stand still, the \"poison\" in the air will begin to eat away at your health so be careful. Lastly, remember that you have different attacks that do different damage, and also that this is a demo... so please give feedback if you are able, to help me advance my skills in game development. Thank you so much for at least giving this game a chance. - Developer"
+You have 20 seconds to fight. If time runs out or you get knocked out, you lose. Knocking out the other player is the only way to win. If you stand still, the \"poison\" in the air will begin to eat away at your health so be careful. Lastly, remember that you have different attacks that do different things... like below the counter is some dots that show you how many charges you have to slice with. Slicing does a bunch of damage, but has a limited use. Uppercut only damages the enemy when they are in the air.  One last thing, thank you so much for giving this game a chance and please give me feedback on any improvements on this demo. - Developer"
 label_settings = SubResource("LabelSettings_l724m")
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="return" type="Button" parent="."]
 offset_left = 627.0
-offset_top = 487.0
+offset_top = 526.0
 offset_right = 673.0
-offset_bottom = 518.0
+offset_bottom = 557.0
 theme_override_font_sizes/font_size = 20
 text = "Start"
 

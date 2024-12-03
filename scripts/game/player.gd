@@ -95,16 +95,18 @@ func direction_helper(direction):
 func attack_helper(delta):
 	if can_attack and not damaged:
 		if Input.is_action_just_pressed("attack") and Input.is_action_pressed("down") and is_on_floor():
-			player_cooldown.value = 0
-			can_attack = false
-			$miss.play()
-			sprite.play("attack-slash")
-			is_stand_attacking = true
-			await get_tree().create_timer(0.1).timeout
-			sword_strike_collision.disabled = false
-			await get_tree().create_timer(0.3).timeout
-			is_stand_attacking = false
-			sword_strike_collision.disabled = true
+			if Global.special_usage > 0:
+				Global.special_usage -= 1
+				player_cooldown.value = 0
+				can_attack = false
+				$miss.play()
+				sprite.play("attack-slash")
+				is_stand_attacking = true
+				await get_tree().create_timer(0.1).timeout
+				sword_strike_collision.disabled = false
+				await get_tree().create_timer(0.3).timeout
+				is_stand_attacking = false
+				sword_strike_collision.disabled = true
 		
 		elif Input.is_action_just_pressed("attack") and Input.is_action_pressed("up") and is_on_floor():
 			player_cooldown.value = 0
@@ -166,7 +168,7 @@ func _on_up_strike_area_entered(area: Area2D) -> void:
 		up_strike_collision.disabled = true
 		var enemy: CharacterBody2D = area.get_parent()
 		$hit.play()
-		enemy.take_damage(8)
+		enemy.take_damage(7)
 
 
 func _on_down_strike_area_entered(area: Area2D) -> void:
@@ -174,7 +176,7 @@ func _on_down_strike_area_entered(area: Area2D) -> void:
 		down_strike_collision.disabled = true
 		var enemy: CharacterBody2D = area.get_parent()
 		$hit.play()
-		enemy.take_damage(5)
+		enemy.take_damage(7)
 
 
 func _on_sword_strike_area_entered(area: Area2D) -> void:
@@ -182,4 +184,4 @@ func _on_sword_strike_area_entered(area: Area2D) -> void:
 		sword_strike_collision.disabled = true
 		var enemy: CharacterBody2D = area.get_parent()
 		$blade.play()
-		enemy.take_damage(10)
+		enemy.take_damage(12)

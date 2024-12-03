@@ -57,6 +57,7 @@ func _on_retry_pressed() -> void:
 	Global.status = ""
 	Global.is_someone_dead = false
 	Global.pause_attack = false
+	Global.special_usage = 3
 	get_tree().change_scene_to_file("res://scenes/game/arena.tscn")
 
 

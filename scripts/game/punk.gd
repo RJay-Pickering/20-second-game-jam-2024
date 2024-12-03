@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Enemy properties
 var speed: float = 100.0
 var health: int = 100
-var attack_damage: int = 10
+var attack_damage: int = 15
 var attack_range: float = 50.0
 var attack_cooldown: float = 1.0
 @export var target: CharacterBody2D
@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		is_jumping = false
-		Engine.time_scale = 1
 	
 	if target and not Global.is_someone_dead and not Global.pause_attack:
 		if is_attacking == false and not damaged and not is_jumping:
@@ -62,7 +61,6 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func jump() -> void: 
-	Engine.time_scale = 0.8
 	is_jumping = true 
 	velocity.y = -300.0
 	var knockback = position.direction_to(target.position) * 200.0
@@ -74,7 +72,7 @@ func attack() -> void:
 	can_attack = false
 	enemy_cooldown.value = 0
 	$AnimatedSprite2D.play("punch")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.4).timeout
 	if position.distance_to(target.position) < attack_range:
 		$hit.play()
 		Global.pause_attack = true

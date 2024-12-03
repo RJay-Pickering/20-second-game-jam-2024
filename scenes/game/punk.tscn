@@ -139,7 +139,7 @@ animations = [{
 size = Vector2(20, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq6xu"]
-size = Vector2(13, 43)
+size = Vector2(13, 32)
 
 [node name="Punk" type="CharacterBody2D"]
 script = ExtResource("1_jfpce")
@@ -157,7 +157,7 @@ shape = SubResource("RectangleShape2D_gk7wr")
 [node name="HurtBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-1.5, 10.5)
+position = Vector2(-1.5, 16)
 shape = SubResource("RectangleShape2D_sq6xu")
 debug_color = Color(0.797092, 0.21408, 0.891753, 0.42)
 

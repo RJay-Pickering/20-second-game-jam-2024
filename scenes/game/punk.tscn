@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4n6qb5lh3qef"]
+[gd_scene load_steps=26 format=3 uid="uid://c4n6qb5lh3qef"]
 
 [ext_resource type="Texture2D" uid="uid://c1vt6r72yag7u" path="res://assets/Characters/punk/idle.png" id="1_7qy8u"]
 [ext_resource type="Script" path="res://scripts/game/punk.gd" id="1_jfpce"]
 [ext_resource type="Texture2D" uid="uid://btreoy6iew82b" path="res://assets/Characters/punk/hurt.png" id="2_xs5mc"]
+[ext_resource type="Texture2D" uid="uid://vuxe1tufur6x" path="res://assets/Characters/demon/demon-attack.png" id="3_1ooep"]
 [ext_resource type="Texture2D" uid="uid://dxdt46w3qbkmb" path="res://assets/Characters/punk/punch.png" id="3_fvpda"]
 [ext_resource type="Texture2D" uid="uid://chfdkem8wlsgl" path="res://assets/Characters/punk/walk.png" id="4_0wu10"]
 [ext_resource type="AudioStream" uid="uid://devxyhn1s0nyl" path="res://Audio/sfx/enemy_miss.wav" id="6_lvb3x"]
@@ -23,6 +24,10 @@ region = Rect2(192, 0, 96, 63)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2h3u"]
 atlas = ExtResource("1_7qy8u")
 region = Rect2(288, 0, 96, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60epv"]
+atlas = ExtResource("3_1ooep")
+region = Rect2(1680, 0, 240, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hj4sa"]
 atlas = ExtResource("2_xs5mc")
@@ -81,6 +86,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_60epv")
+}],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hj4sa")
 }, {
 "duration": 1.0,
@@ -123,7 +136,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gk7wr"]
-size = Vector2(20, 0)
+size = Vector2(20, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq6xu"]
 size = Vector2(13, 43)
@@ -134,13 +147,11 @@ script = ExtResource("1_jfpce")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 0.5)
 sprite_frames = SubResource("SpriteFrames_25qkt")
-animation = &"hurt"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 1
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 32)
+position = Vector2(-2, 31.5)
 shape = SubResource("RectangleShape2D_gk7wr")
 
 [node name="HurtBox" type="Area2D" parent="."]

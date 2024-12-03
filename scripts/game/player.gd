@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var JUMP_VELOCITY = -400.0
 @export var player_health: ProgressBar
 @export var enemy: CharacterBody2D
+@export var player_cooldown: ProgressBar
 
 @onready var sprite = $AnimatedSprite2D
 @onready var hurt_collision = $hurt/CollisionShape2D
@@ -14,7 +15,7 @@ extends CharacterBody2D
 var damaged = false
 var can_attack
 
-var health = 10
+var health = 100
 var is_jumping = false
 var is_stand_attacking = false
 var is_jump_attacking = false
@@ -28,6 +29,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if player_cooldown.value < 100:
+		player_cooldown.value += 1.5
+	
 	if is_stand_attacking == false and not Global.is_someone_dead:
 		# Add the gravity.
 		if not is_on_floor():
@@ -91,6 +95,7 @@ func direction_helper(direction):
 func attack_helper(delta):
 	if can_attack and not damaged:
 		if Input.is_action_just_pressed("attack") and Input.is_action_pressed("down") and is_on_floor():
+			player_cooldown.value = 0
 			can_attack = false
 			$miss.play()
 			sprite.play("attack-slash")
@@ -102,6 +107,7 @@ func attack_helper(delta):
 			sword_strike_collision.disabled = true
 		
 		elif Input.is_action_just_pressed("attack") and Input.is_action_pressed("up") and is_on_floor():
+			player_cooldown.value = 0
 			can_attack = false
 			$miss.play()
 			sprite.play("attack-high")
@@ -113,6 +119,7 @@ func attack_helper(delta):
 			up_strike_collision.disabled = true
 		
 		elif Input.is_action_just_pressed("attack") and is_on_floor():
+			player_cooldown.value = 0
 			can_attack = false
 			$miss.play()
 			sprite.play("attack-low")
@@ -124,6 +131,7 @@ func attack_helper(delta):
 			down_strike_collision.disabled = true
 		
 		if Input.is_action_just_pressed("attack") and not is_on_floor():
+			player_cooldown.value = 0
 			can_attack = false
 			$miss.play()
 			sprite.play("attack-jump")
@@ -134,7 +142,7 @@ func attack_helper(delta):
 			is_jump_attacking = false
 			sword_strike_collision.disabled = true
 	else:
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.5).timeout
 		can_attack = true
 
 func take_damage(damage: int) -> void:

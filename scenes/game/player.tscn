@@ -344,6 +344,7 @@ size = Vector2(13, 0)
 size = Vector2(9, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdg8f"]
+size = Vector2(20, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xo41"]
 size = Vector2(26, 34)
@@ -374,7 +375,7 @@ shape = SubResource("RectangleShape2D_idp6o")
 [node name="up_strike" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="up_strike"]
-position = Vector2(7, 10)
+position = Vector2(7, -3)
 shape = SubResource("RectangleShape2D_hdg8f")
 debug_color = Color(0, 0.54701, 0.685008, 0.419608)
 

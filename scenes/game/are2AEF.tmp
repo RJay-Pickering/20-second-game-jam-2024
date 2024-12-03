@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cvplx2rdovuwf"]
+[gd_scene load_steps=27 format=4 uid="uid://cvplx2rdovuwf"]
 
 [ext_resource type="Script" path="res://scripts/game/arena.gd" id="1_ty2x4"]
 [ext_resource type="Texture2D" uid="uid://c5piw3d0yalml" path="res://assets/background/tiles.png" id="3_23utu"]
@@ -103,6 +103,7 @@ border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfd2k"]
 bg_color = Color(0.282353, 1, 0.6, 1)
@@ -114,63 +115,10 @@ border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ps6i5"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kqaw"]
-bg_color = Color(5.58317e-06, 0.776022, 0.776022, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
-corner_radius_bottom_right = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_54np3"]
 font_size = 30
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kykjq"]
-bg_color = Color(0.270588, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7bud7"]
-bg_color = Color(0.282353, 1, 0.6, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq01x"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jucx"]
-bg_color = Color(0, 0.776471, 0.776471, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_bottom_left = 5
 
 [sub_resource type="SphereMesh" id="SphereMesh_flvkh"]
 
@@ -252,24 +200,18 @@ tile_set = SubResource("TileSet_7we5o")
 position = Vector2(290, 137)
 zoom = Vector2(2.2, 2.2)
 
-[node name="Player" parent="." node_paths=PackedStringArray("player_health", "enemy", "player_cooldown") instance=ExtResource("3_gr1hl")]
+[node name="Player" parent="." node_paths=PackedStringArray("player_health", "enemy") instance=ExtResource("3_gr1hl")]
 position = Vector2(59, 190)
 player_health = NodePath("../CanvasLayer/player_health")
 enemy = NodePath("../Punk")
-player_cooldown = NodePath("../CanvasLayer/PlayersAttackCooldown")
 
-[node name="Punk" parent="." node_paths=PackedStringArray("target", "enemy_health", "enemy_cooldown") instance=ExtResource("4_m3qoh")]
+[node name="Punk" parent="." node_paths=PackedStringArray("target", "enemy_health") instance=ExtResource("4_m3qoh")]
 position = Vector2(518, 206)
-collision_layer = 2
-collision_mask = 2
 target = NodePath("../Player")
 enemy_health = NodePath("../CanvasLayer/enemy_health")
-enemy_cooldown = NodePath("../CanvasLayer/EnemyAttackCooldown")
 
 [node name="walls&floors" type="StaticBody2D" parent="."]
 position = Vector2(0, 23)
-collision_layer = 3
-collision_mask = 3
 
 [node name="Left wall" type="CollisionShape2D" parent="walls&floors"]
 position = Vector2(-8, 138.25)
@@ -282,8 +224,6 @@ shape = SubResource("RectangleShape2D_52lvg")
 debug_color = Color(0.941162, 9.2411e-06, 0.611819, 0.42)
 
 [node name="Floor" type="CollisionShape2D" parent="walls&floors"]
-light_mask = 3
-visibility_layer = 3
 position = Vector2(290, 258)
 shape = SubResource("RectangleShape2D_awvta")
 debug_color = Color(0.689919, 0.288133, 1, 0.42)
@@ -324,22 +264,12 @@ position = Vector2(64, 63)
 scale = Vector2(2, 2)
 texture = ExtResource("4_2tu1u")
 
-[node name="PlayersAttackCooldown" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 110.0
-offset_top = 93.0
-offset_right = 315.0
-offset_bottom = 109.0
-theme_override_styles/background = SubResource("StyleBoxFlat_ps6i5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3kqaw")
-value = 100.0
-show_percentage = false
-
 [node name="enemy_name" type="Label" parent="CanvasLayer"]
 offset_left = 985.0
 offset_top = 32.0
 offset_right = 1161.0
 offset_bottom = 55.0
-text = "Jared the Punk"
+text = "Enemy"
 label_settings = SubResource("LabelSettings_54np3")
 horizontal_alignment = 2
 
@@ -348,8 +278,8 @@ offset_left = 671.0
 offset_top = 56.0
 offset_right = 1167.0
 offset_bottom = 93.0
-theme_override_styles/background = SubResource("StyleBoxFlat_kykjq")
-theme_override_styles/fill = SubResource("StyleBoxFlat_7bud7")
+theme_override_styles/background = SubResource("StyleBoxFlat_q3vfe")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wfd2k")
 value = 100.0
 fill_mode = 1
 show_percentage = false
@@ -363,16 +293,6 @@ texture = ExtResource("8_2gj3t")
 position = Vector2(1213, 63)
 scale = Vector2(2, 2)
 texture = ExtResource("4_2tu1u")
-
-[node name="EnemyAttackCooldown" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 962.0
-offset_top = 93.0
-offset_right = 1167.0
-offset_bottom = 109.0
-theme_override_styles/background = SubResource("StyleBoxFlat_wq01x")
-theme_override_styles/fill = SubResource("StyleBoxFlat_0jucx")
-value = 100.0
-show_percentage = false
 
 [node name="Countdown" type="MeshInstance2D" parent="CanvasLayer"]
 position = Vector2(638, 74)

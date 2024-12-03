@@ -21,7 +21,9 @@ func _ready() -> void:
 		status = "win"
 		title.label_settings.font_color = Color(0, 0.537, 0.22)
 		reason.label_settings.font_color = Color(0.21, 0.767, 0)
-		reason.text = """YOU WIN"""
+		var rng = RandomNumberGenerator.new()
+		var random_integer = rng.randi_range(1000, 100000)
+		reason.text = "You Win " + str(random_integer) + " GOLD."
 	elif Global.status == "EnemyDeadPlayerDead" or Global.status == "PlayerDeadEnemyDead":
 		status = "lose"
 		title.label_settings.font_color = Color(1, 0.459, 0.11)

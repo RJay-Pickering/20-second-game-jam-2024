@@ -8,15 +8,24 @@ var attack_range: float = 50.0
 var attack_cooldown: float = 1.0
 @export var target: CharacterBody2D
 @export var enemy_health: ProgressBar
+@export var enemy_cooldown: ProgressBar
 @onready var sprite = $AnimatedSprite2D
 var can_attack: bool = true
 var is_attacking: bool = false
+var is_jumping: bool = false
 var damaged = false
+var random_numbers = randi() % 101
 
 # Called every frame
 func _process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		is_jumping = false
+		Engine.time_scale = 1
+	
 	if target and not Global.is_someone_dead and not Global.pause_attack:
-		if is_attacking == false and not damaged:
+		if is_attacking == false and not damaged and not is_jumping:
 			var direction = (target.position - position).normalized()
 			velocity.x = direction.x * speed
 			
@@ -31,27 +40,39 @@ func _process(delta: float) -> void:
 			move_and_collide(velocity * delta)
 			await get_tree().create_timer(0.5).timeout
 			damaged = false
-		move_and_collide(velocity * delta)
-		
 		
 		# Check if in attack range
-		if position.distance_to(target.position) < attack_range and can_attack and not damaged:
-			is_attacking = true
-			attack()
-			if position.x > target.position.x:
-				sprite.flip_h = false
+		if position.distance_to(target.position) < attack_range and can_attack and not damaged and not is_jumping:
+			if random_numbers <= 20:
+				jump()
 			else:
-				sprite.flip_h = true
-			await get_tree().create_timer(0.5).timeout
-			is_attacking = false
+				is_attacking = true
+				attack()
+				if position.x > target.position.x:
+					sprite.flip_h = false
+				else:
+					sprite.flip_h = true
+				await get_tree().create_timer(0.5).timeout
+				is_attacking = false
 		elif is_attacking == false and damaged == false:
+			random_numbers = randi() % 101
 			$AnimatedSprite2D.play("walk")
-	else:
-		$AnimatedSprite2D.stop()
+	if enemy_cooldown.value < 100:
+		enemy_cooldown.value += 1.5
+	move_and_slide()
+
+func jump() -> void: 
+	Engine.time_scale = 0.8
+	is_jumping = true 
+	velocity.y = -300.0
+	var knockback = position.direction_to(target.position) * 200.0
+	velocity.x = knockback.x
+	move_and_slide()
 
 # Attack function
 func attack() -> void:
 	can_attack = false
+	enemy_cooldown.value = 0
 	$AnimatedSprite2D.play("punch")
 	await get_tree().create_timer(0.5).timeout
 	if position.distance_to(target.position) < attack_range:

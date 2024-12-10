@@ -111,10 +111,10 @@ label_settings = SubResource("LabelSettings_xo8bi")
 [node name="winner" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 944.0
-offset_top = 307.0
-offset_right = 1242.0
-offset_bottom = 346.0
+offset_left = 943.0
+offset_top = 263.0
+offset_right = 1241.0
+offset_bottom = 302.0
 text = "Winner"
 label_settings = SubResource("LabelSettings_mwvox")
 horizontal_alignment = 1

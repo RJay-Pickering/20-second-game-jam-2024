@@ -315,16 +315,6 @@ text = "DEMO"
 label_settings = SubResource("LabelSettings_0s05n")
 horizontal_alignment = 1
 
-[node name="notes" type="Label" parent="menu"]
-offset_left = 18.0
-offset_top = 603.0
-offset_right = 202.0
-offset_bottom = 700.0
-text = "This was made for the 20 second Game Jam 2024. This was also made in 72 hours..."
-label_settings = SubResource("LabelSettings_xebc7")
-horizontal_alignment = 1
-autowrap_mode = 3
-
 [node name="player" type="AnimatedSprite2D" parent="menu"]
 position = Vector2(595, 365)
 sprite_frames = SubResource("SpriteFrames_xn0tj")

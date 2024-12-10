@@ -176,7 +176,7 @@ func _on_down_strike_area_entered(area: Area2D) -> void:
 		down_strike_collision.disabled = true
 		var enemy: CharacterBody2D = area.get_parent()
 		$hit.play()
-		enemy.take_damage(7)
+		enemy.take_damage(100)
 
 
 func _on_sword_strike_area_entered(area: Area2D) -> void:
